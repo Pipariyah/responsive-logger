@@ -1,0 +1,12 @@
+{
+  "name": "responsive-logger",
+  "version": "0.0.1",
+  "description": "Simple and light wait library to manage console messages in js based on envrionment",
+  "main": "logger/logger.js",
+  "scripts": {
+    "test": "node src/test.js"
+  },
+  "keywords": ["log", "console", "console log", "env log", "log based on env"],
+  "author": "Hiren Pipariya",
+  "license": "ISC"
+}
