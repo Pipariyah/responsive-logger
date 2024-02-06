@@ -6,6 +6,7 @@
   "scripts": {
     "test": "node src/test.js"
   },
+  "repository": "Pipariyah/responsive-logger",
   "keywords": ["log", "console", "console log", "env log", "log based on env"],
   "author": "Hiren Pipariya",
   "license": "ISC",
