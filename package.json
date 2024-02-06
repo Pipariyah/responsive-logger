@@ -1,6 +1,6 @@
 {
   "name": "responsive-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple and light wait library to manage console messages in js based on envrionment",
   "main": "src/index.js",
   "scripts": {

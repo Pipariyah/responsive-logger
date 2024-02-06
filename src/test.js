@@ -1,6 +1,7 @@
 // test.js
-require('./logger')
-console.log('This is a log message.');
+const console = require('./index')
+console.initialized(true);
+console.log('This is a log message.',{data:"this is test"});
 console.info('This is an informational message.');
 console.warn('Warning:', 'Something unusual happened.');
 console.error('Error occurred:', new Error('Example error'));
