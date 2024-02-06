@@ -28,7 +28,7 @@ jobs:
     - name: Publish to npm
       if: github.event_name == 'push' && github.event.ref == 'refs/heads/master'
       run: |
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
-        npm publish --otp=${{ secrets.TOTP }}
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.TOTP }}" > ~/.npmrc
+        npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
