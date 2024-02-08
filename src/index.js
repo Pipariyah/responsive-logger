@@ -64,10 +64,16 @@ const logger = new Logger();
 
 // Initialize logger
 logger.initialize();
+// Augment the console object with the methods from the Logger instance
+if (typeof console !== 'undefined') {
+  console.initialized = logger.initialize.bind(logger);
+  console.log = logger.log.bind(logger);
+  console.info = logger.info.bind(logger);
+  console.warn = logger.warn.bind(logger);
+  console.error = logger.error.bind(logger);
+  console.debug = logger.debug.bind(logger);
+  console.trace = logger.trace.bind(logger);
+}
 
-module.exports = {
-  ...logger,
-  initialized: function(isProduction) {
-    logger.initialize(isProduction);
-  }
-};
+
+module.exports = logger; // Export the logger instance directly

@@ -31,7 +31,7 @@ This initializes the logger and intercepts the `console` object to provide enhan
 If you prefer to manually manage the production mode, you can do so as follows:
 
 ```javascript
-const console = require('responsive-logger');
+require('responsive-logger');
 console.initialized(true); // Set production mode to true
 ```
 

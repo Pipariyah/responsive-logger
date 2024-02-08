@@ -1,18 +1,32 @@
 {
-  "name": "responsive-logger",
-  "version": "0.0.6",
-  "description": "Simple and light wait library to manage console messages in js based on envrionment",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "node src/test.js"
-  },
-  "repository": "npm-codes-js/responsive-logger",
-  "keywords": ["log", "console", "console log", "env log", "log based on env"],
-  "author": "Hiren Pipariya",
-  "license": "ISC",
-  "files": [
-    "src",
-    "package.json",
-    "readme.md"
-  ]
+	"name": "responsive-logger",
+	"version": "0.0.8",
+	"description": "Simple and light wait library to manage console messages in js based on envrionment",
+	"main": "dist/responsive-loger.js",
+	"scripts": {
+		"test": "node src/test.js"
+	},
+	"repository": "npm-codes-js/responsive-logger",
+	"keywords": [
+		"log",
+		"console",
+		"console log",
+		"env log",
+		"log based on env"
+	],
+	"author": "Hiren Pipariya <pipariyah1@gmail.com>",
+	"license": "UNLICENSED",
+	"files": [
+		"dist",
+		"package.json",
+		"readme.md"
+	],
+	"devDependencies": {
+		"webpack-cli": "^5.1.4"
+	},
+	"dependencies": {
+		"javascript-obfuscator": "^4.1.0",
+		"webpack": "^5.90.1",
+		"webpack-obfuscator": "^3.5.1"
+	}
 }
