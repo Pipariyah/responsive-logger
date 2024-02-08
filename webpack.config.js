@@ -4,11 +4,12 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/index.js', // Assuming your entry file is src/index.js
+  entry: './src/server.js', // Assuming your entry file is src/index.js
   output: {
     filename: 'responsive-loger.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  target: 'node', // Target Node.js for the server-side bundle
   optimization: {
     minimizer: [
       new TerserPlugin({

@@ -1,10 +1,11 @@
-// index.js
-
+// src/index.js
 class Logger {
   constructor() {
+    this.defaultConfig = {};
+    this.config = { ...this.defaultConfig };
     this.isBrowser = typeof window !== 'undefined';
-    this.env = process.env.APP_ENV || process.env.NODE_ENV || '';
-    this.isProduction = this.env.toLowerCase() === 'production';
+    this.isNode = typeof window === 'undefined';
+    this.env = '';
     this.initialized = false;
     this.originalConsole = { ...console };
     this.logToFile = this.logToFile.bind(this);
@@ -21,8 +22,9 @@ class Logger {
     }
   }
 
-  initialize(isProduction = false) {
-    this.isProduction = isProduction;
+  initialize() {
+    this.isProduction = this.config.isProduction;
+    this.logFilePath = this.config.logFilePath;
     this.initialized = true;
 
     // Intercept console.log
@@ -33,9 +35,21 @@ class Logger {
     }
   }
 
+  setConfig(config) {
+    if (config.logFilePath) {
+      this.config = { ...this.defaultConfig, ...config };
+    } else {
+      this.config = { ...this.defaultConfig, ...config, logFilePath: null };
+    }
+    if (!this.initialized) {
+      this.initialize();
+    }
+  }
+
   createLogMethod(level) {
     return (...messages) => {
-      const logPrefix = `[${new Date().toISOString()}][${level.toUpperCase()}]`;
+      const date = new Date().toLocaleString(['en-IN','en-US', 'en-GB'], { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+      const logPrefix = `[${date}][${level.toUpperCase()}]`;
 
       if (this.isProduction) {
         if (this.isBrowser) {
@@ -44,7 +58,9 @@ class Logger {
           }
           window.log.push({ level, message: messages.join(' ') });
         } else {
-          this.logToFile(logPrefix + JSON.stringify(messages));
+          if (this.logFilePath !== null && this.isNode) {
+            this?.logToFile(logPrefix + JSON.stringify(messages));
+          }
         }
       } else {
         // Log to original console in non-production environment
@@ -54,11 +70,10 @@ class Logger {
   }
 
   logToFile(...logs) {
-    // Implement server-side logic to log to a file
-    // Example: Write logs to a file using fs module in Node.js
-    this.originalConsole.log('Logs written to file:', logs);
+    // Empty function placeholder for client-side
   }
 }
+
 
 const logger = new Logger();
 
@@ -67,6 +82,8 @@ logger.initialize();
 // Augment the console object with the methods from the Logger instance
 if (typeof console !== 'undefined') {
   console.initialized = logger.initialize.bind(logger);
+  console.setConfig = logger.setConfig.bind(logger);
+  console.logToFile = logger.logToFile.bind(logger);
   console.log = logger.log.bind(logger);
   console.info = logger.info.bind(logger);
   console.warn = logger.warn.bind(logger);

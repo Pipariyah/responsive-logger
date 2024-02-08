@@ -1,6 +1,6 @@
 {
 	"name": "responsive-logger",
-	"version": "0.0.8",
+	"version": "0.0.9",
 	"description": "Simple and light wait library to manage console messages in js based on envrionment",
 	"main": "dist/responsive-loger.js",
 	"scripts": {
@@ -23,6 +23,10 @@
 	],
 	"devDependencies": {
 		"webpack-cli": "^5.1.4"
+	},
+	"optionalDependencies": {
+		"fs": "^0.0.1-security",
+		"path": "^0.12.7"
 	},
 	"dependencies": {
 		"javascript-obfuscator": "^4.1.0",
