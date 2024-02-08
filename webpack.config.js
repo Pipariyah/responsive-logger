@@ -1,10 +1,11 @@
+// webpack.config.js
 const TerserPlugin = require('terser-webpack-plugin');
 const WebpackObfuscator = require('webpack-obfuscator');
 const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: './src/server.js', // Assuming your entry file is src/index.js
+  entry: './src/server.js', // Assuming your entry file is src/server.js
   output: {
     filename: 'responsive-loger.js',
     path: path.resolve(__dirname, 'dist'),
